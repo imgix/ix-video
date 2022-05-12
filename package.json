@@ -1,13 +1,13 @@
 {
-  "name": "@imgix/web-components",
-  "version": "0.0.1-rc.5",
-  "description": "imgix Web Components library",
+  "name": "@imgix/ix-video",
+  "version": "1.0.0-rc.1",
+  "description": "imgix video custom element that works anywhere",
   "repository": {
     "type": "git",
-    "url": "https://github.com/imgix/web-components.git"
+    "url": "https://github.com/imgix/ix-video.git"
   },
   "bugs": {
-    "url": "https://github.com/imgix/vue/issues"
+    "url": "https://github.com/imgix/ix-video/issues"
   },
   "main": "/dist/index.bundled.js",
   "module": "/dist/index.bundled.js",

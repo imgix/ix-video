@@ -1,28 +1,28 @@
-# imgix/web-components
+# imgix/ix-video
 
-imgix SDK team Web Component library.
+An imgix video custom element that works anywhere
 
-[![npm version](https://img.shields.io/npm/v/@imgix/web-components.svg)](https://www.npmjs.com/package/@imgix/web-components)
-[![circleci](https://circleci.com/gh/imgix/web-components/tree/next.svg?style=shield&circle-token=ae497a4aade0e744c31dc29c97b967a8011ef8af)](https://circleci.com/gh/imgix/web-components/?branch=next)
+[![npm version](https://img.shields.io/npm/v/@imgix/ix-video.svg)](https://www.npmjs.com/package/@imgix/ix-video)
+[![circleci](https://circleci.com/gh/imgix/ix-video/tree/next.svg?style=shield&circle-token=ae497a4aade0e744c31dc29c97b967a8011ef8af)](https://circleci.com/gh/imgix/ix-video/)
 
 # Install
 
 Install this package in your project:
 
 ```bash
-npm i @imgix/web-components
+npm i @imgix/ix-video
 ```
 
 Or
 
 ```bash
-yarn add @imgix/web-components
+yarn add @imgix/ix-video
 ```
 
 # Usage
 
-This library exports a collection of Web Components. Bellow is an example of how
-to import and use the `IxVideo` web-component in your project.
+This library exports a video custom element (web component). Bellow is an example of how
+to import and use the `IxVideo` custom element in your project.
 
 To use the library in your project:
 
@@ -30,7 +30,7 @@ To use the library in your project:
 
 ```jsx
 import * as React from 'react';
-import {IxVideo} from '@imgix/web-components';
+import {IxVideo} from '@imgix/ix-video';
 import {createComponent} from '@lit-labs/react';
 
 // ... wrap the component with Lit's React wrapper
@@ -64,7 +64,7 @@ export default App;
 
 ```html
 <script setup>
-  import {IxVideo} from '@imgix/web-components';
+  import {IxVideo} from '@imgix/ix-video';
   import {ref} from 'vue';
 </script>
 <script>
