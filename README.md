@@ -1,11 +1,21 @@
 # imgix/ix-video
 
-An imgix video custom element that works anywhere
+An imgix video custom element that works anywhere.
 
 [![npm version](https://img.shields.io/npm/v/@imgix/ix-video.svg)](https://www.npmjs.com/package/@imgix/ix-video)
 [![circleci](https://circleci.com/gh/imgix/ix-video/tree/next.svg?style=shield&circle-token=ae497a4aade0e744c31dc29c97b967a8011ef8af)](https://circleci.com/gh/imgix/ix-video/)
 
-# Install
+# Requirements
+
+- Node v12+
+
+- Browsers with Custom Elements V1 and Shadow DOM support, e.g. Chrome, Firefox, Safari, Edge (79+)
+
+Browsers without native [custom element support](https://caniuse.com/#feat=custom-elementsv1) require a [polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements).
+
+For Node/browser versions without [es6 module support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#browser_support), you'll need to use a bundler like [webpack](https://webpack.js.org/) or [parcel](https://parceljs.org/) to bundle the custom element.
+
+# Installation
 
 Install this package in your project:
 
@@ -13,203 +23,40 @@ Install this package in your project:
 npm i @imgix/ix-video
 ```
 
-Or
+Or add it from a CDN:
 
-```bash
-yarn add @imgix/ix-video
+```html
+<script
+  type="module"
+  src="https://unpkg.com/@imgix/ix-video@latest/dist/index.bundled.js"
+></script>
 ```
 
 # Usage
 
-This library exports a video custom element (web component). Bellow is an example of how
-to import and use the `IxVideo` custom element in your project.
+Look at our docs to see how to us this inside your [React](/documentation/react.md), [Vue](/documentation/vue.md), or other [web-apps](/documentation/static.md).
 
-To use the library in your project:
+## Using `<ix-video>` on an HTML static page
 
-### React
-
-```jsx
-import * as React from 'react';
-import {IxVideo} from '@imgix/ix-video';
-import {createComponent} from '@lit-labs/react';
-
-// ... wrap the component with Lit's React wrapper
-export const Video = createComponent(React, 'ix-video', IxVideo, {
-  onError: 'error',
-});
-
-// ... use the component
-function App() {
-  const handleEvent = (e: any, type: string) => {
-    console.info('ix-video: ' + type, e);
-  };
-
-  return (
-    <div className="App">
-      <div style={{height: 500, width: 500}}>
-        <Video
-          controls
-          source="https://assets.imgix.video/videos/girl-reading-book-in-library.mp4"
-          onError={(e) => handleEvent(e, 'error')}
-        />
-      </div>
-    </div>
-  );
-}
-
-export default App;
-```
-
-### Vue
+Below is an example of how to import and use the `ix-video` custom element from a CDN on a static HTML page.
 
 ```html
-<script setup>
-  import {IxVideo} from '@imgix/ix-video';
-  import {ref} from 'vue';
-</script>
-<script>
-  // store a ref to the component
-  const ixVideo = ref(null);
-  export default {
-    methods: {
-      warn(message, event) {
-        // event handler
-        const video = ixVideo.value;
-        console.warn(message, event.detail);
-      },
-      toggleControls() {
-        // update component props
-        const video = ixVideo.value;
-        video.controls = !video.controls;
-      },
-    },
-  };
-</script>
-
-<template>
-  <div class="App">
-    <button @click="() => toggleControls()">Toggle Controls</button>
+<html lang="en">
+  <head>
+    <title>ix-video in a static HTML file</title>
+    <!-- Note: type 'module' here is important -->
+    <script type="module">
+      import {IxVideo} from './node_modules/@imgix/ix-video/dist/index.bundled.js';
+    </script>
+    <!-- Alternatively, the component can be loaded via a CDN -->
+    <script type="module" src="https://unpkg.com/@imgix/ix-video@latest/dist/index.bundled.js"></script>
+  </head>
+  <body>
+    <h1>There is no bundler or bundling involved!</h1>
     <ix-video
-      ref="ixVideo"
       controls
-      source="https://assets.imgix.video/videos/girl-reading-book-in-library.mp4"
-      data-setup='{ "playbackRates": [0.5, 1, 1.5, 2] }'
-      @error="(event) => warn('error:', event)"
-    ></ix-video>
-  </div>
-</template>
+      src="https://assets.imgix.video/videos/girl-reading-book-in-library.mp4"
+    >
+  </body>
+</html>
 ```
-
-Vue might show some warnings in the console if you don't declare your custom
-element in it's configuration. To turn these warnings off, add the following:
-
-```js
-//vite.config.js
-import vue from '@vitejs/plugin-vue';
-import {defineConfig} from 'vite';
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          isCustomElement: (name) => name.startsWith('ix-'),
-        },
-      },
-    }),
-  ],
-});
-```
-
-# Development
-
-## Setup
-
-Install dependencies:
-
-```bash
-npm i
-```
-
-## Build
-
-This repo uses the TypeScript compiler to produce JavaScript that runs in modern browsers.
-
-To build the JavaScript version of your component:
-
-```bash
-npm run build
-```
-
-To watch files and rebuild when the files are modified, run the following command in a separate shell:
-
-```bash
-npm run build:watch
-```
-
-Both the TypeScript compiler and lit-analyzer are configured to be very strict. You may want to change `tsconfig.json` to make them less strict.
-
-## Testing
-
-This repo uses Cypress to run e2e tests.
-
-Tests can be run with the `test` script, which will run your tests against Lit's development mode (with more verbose errors):
-
-```bash
-npm run test
-```
-
-For local e2e testing during development, you can run `npm run dev` and `npm run cypress:open` to start the development server and open the Cypress UI.
-
-Alternatively the `test:prod` command will run your tests in Lit's production mode.
-
-## Dev Server
-
-This repo uses Vite to bundle and serve the component files for local development.
-
-To run the dev server and open the project in a new browser tab:
-
-```bash
-npm run dev
-```
-
-There is a development HTML file located at `/dev/index.html` that you can view at http://localhost:3000/dev/index.html. Note that this command will serve your code using Lit's development mode (with more verbose errors). To serve your code against Lit's production mode, use `npm run dev:prod`.
-
-## Editing
-
-If you use VS Code, we highly recommend the [lit-plugin extension](https://marketplace.visualstudio.com/items?itemName=runem.lit-plugin), which enables some extremely useful features for lit-html templates:
-
-- Syntax highlighting
-- Type-checking
-- Code completion
-- Hover-over docs
-- Jump to definition
-- Linting
-- Quick Fixes
-
-The project is setup to recommend lit-plugin to VS Code users if they don't already have it installed.
-
-## Linting
-
-Linting of TypeScript files is provided by [ESLint](eslint.org) and [TypeScript ESLint](https://github.com/typescript-eslint/typescript-eslint). In addition, [lit-analyzer](https://www.npmjs.com/package/lit-analyzer) is used to type-check and lint lit-html templates with the same engine and rules as lit-plugin.
-
-The rules are mostly the recommended rules from each project, but some have been turned off to make LitElement usage easier. The recommended rules are pretty strict, so you may want to relax them by editing `.eslintrc.json` and `tsconfig.json`.
-
-To lint the project run:
-
-```bash
-npm run lint
-```
-
-## Formatting
-
-[Prettier](https://prettier.io/) is used for code formatting. It has been pre-configured according to the Lit's style. You can change this in `.prettierrc.json`.
-
-Prettier has not been configured to run when committing files, but this can be added with Husky and and `pretty-quick`. See the [prettier.io](https://prettier.io/) site for instructions.
-
-## Bundling and minification
-
-This project uses Rollup to bundle and minify the TypeScript component files
-into a single file in `dist/`. THe rollup config is located at
-`rollup.config.js`.
