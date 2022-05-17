@@ -10,6 +10,6 @@ features:
   - title: Bite sized
     details: Small bundle with few dependencies
   - title: Simple
-    details: Best practices use out-of-the-box
+    details: Uses best practices out-of-the-box
 footer: Made by imgix with ❤️
 ---
