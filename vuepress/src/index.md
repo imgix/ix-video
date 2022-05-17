@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: https://pluginicons.craft-cdn.com/imgix.svg?1511197213
-tagline: Cross-framework Web Components to get you started with imgix
+tagline: imgix video custom element
 actionText: Quick Start →
 actionLink: /overview/
 features:

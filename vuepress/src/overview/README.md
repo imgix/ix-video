@@ -1,8 +1,8 @@
 # 📙 Introduction
 
-**@imgix/web-components**
+**@imgix/ix-video**
 
-A library of [web components](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that make it **quick** and **easy** to use our powerful processing and delivery platform inside your web application.
+An imgix video [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that makes it **quick** and **easy** to use our powerful video processing and delivery platform inside your web application.
 
 ## Quick Start Guides
 

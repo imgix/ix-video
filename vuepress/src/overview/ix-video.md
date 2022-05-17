@@ -28,7 +28,7 @@ HLS video playback leverages adaptive bitrate streaming **(ABS)** technology to 
 First import the component:
 
 ```js
-import {IxVideo} from '@imgix/web-components';
+import {IxVideo} from '@imgix/ix-video';
 ```
 
 We recommend you do this in the root of your application so that the custom elements are registered for the entire application.
