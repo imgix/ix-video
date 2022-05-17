@@ -28,9 +28,7 @@ Vue has great support for Web Components, so you can use the component in your V
 </template>
 ```
 
-However, Vue might show some warnings in the console if you don't declare your custom element in it's configuration. To turn these warnings off, you can let vue that the elements that start with `ix` are custom elements.
-
-If you're using Vite, you can add the following to your `vite.config.js`:
+You will need to signal to the Vue compiler that this component is a custom element by adding the following:
 
 ```js
 //vue.config.js
@@ -45,11 +43,12 @@ module.exports = {
           // treat any tag that starts with ix- as custom elements
           isCustomElement: (name) => name.startsWith('ix-'),
         }
-      }))
+      })
+    )
   }
 ```
 
-Or with Vite:
+Or if you're using Vite, you can add the following to your `vite.config.js`:
 
 ```js
 //vite.config.js
