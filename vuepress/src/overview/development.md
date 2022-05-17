@@ -86,6 +86,4 @@ Prettier has not been configured to run when committing files, but this can be a
 
 ## Bundling and minification
 
-This project uses Rollup to bundle and minify the TypeScript component files
-into a single file in `dist/`. The rollup config is located at
-`rollup.config.js`.
+This project uses Rollup to bundle and minify the TypeScript component files into a single file in `dist/`. The rollup config is located at `rollup.config.js`.

@@ -18,7 +18,7 @@ Render an imgix video in your web application.
 
 [📐 Automatically resize videos](/overview/ix-video.html#advanced-usage)
 
-::: details coming soon
+::: details more guides coming soon
 
 - use events to control the video playback
 - change the video source dynamically
