@@ -4,7 +4,7 @@
  * https://v1.vuepress.vuejs.org/guide/basic-config.html#app-level-enhancements
  */
 
-// import web-components from '@imgix/web-components';
+// import ix-video from '@imgix/ix-video';
 if (typeof window !== 'undefined') window.global = window;
 require('../../../dist/index.bundled.js');
 
