@@ -23,56 +23,6 @@ Features:
 HLS video playback leverages adaptive bitrate streaming **(ABS)** technology to deliver the smooth video quality in the quickest time possible.
 :::
 
-### Frontend Frameworks
-
-If you're using the library in React or Vue, you might have to take some additional steps to get the component to work correctly.
-
-#### Vue
-
-Vue has great support for Web Components, so you can use the component in your Vue application without any additional steps.
-
-However, Vue might show some warnings in the console if you don't declare your custom element in it's configuration. To turn these warnings off, you can add the following:
-
-```js
-// vite.config.js
-import vue from '@vitejs/plugin-vue';
-import {defineConfig} from 'vite';
-
-// https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    vue({
-      template: {
-        compilerOptions: {
-          isCustomElement: (name) => name.startsWith('ix-'),
-        },
-      },
-    }),
-  ],
-});
-```
-
-#### React
-
-React can render Web Components, but it has [trouble](https://custom-elements-everywhere.com/#react) passing React props to custom element properties and event listeners.
-
-We recommend using a wrapper like [@lit-labs/react](https://github.com/lit/lit/tree/main/packages/labs/react#readme) to wrap the custom element in a React component that passes props and synthetic events to the custom element.
-
-```jsx
-import * as React from 'react';
-import {createComponent} from '@lit-labs/react';
-import {IxVideo} from '../src/index';
-
-// wrap the component to ensure that ix-video custom events are handled correctly
-export const Video = createComponent(React, 'ix-video', IxVideo, {
-  onSeeked: 'seeked',
-  onError: 'error',
-});
-
-// now we can use the events in react
-<Video onSeeked={(e) => console.log(e)} />;
-```
-
 ## Basic Usage
 
 First import the component:
