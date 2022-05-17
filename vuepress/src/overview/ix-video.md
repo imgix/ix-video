@@ -41,6 +41,103 @@ And you're ready to go 🎉.
 
 <video-hls></video-hls>
 
+### React
+
+React can render custom elements (Web Components), but it has [trouble](https://custom-elements-everywhere.com/#react) passing React props to custom element properties and event listeners.
+
+We recommend using a wrapper like [@lit-labs/react](https://github.com/lit/lit/tree/main/packages/labs/react#readme) to wrap the custom element in a React component that passes props and synthetic events to the custom element.
+
+Here's an example of how to wrap the custom element in a React component:
+
+```jsx
+import * as React from 'react';
+import {createComponent} from '@lit-labs/react';
+import {IxVideo} from '@imgix/ix-video';
+
+// wrap the component to
+export const Video = createComponent(React, 'ix-video', IxVideo, {
+  onSeeked: 'seeked',
+});
+
+// use the component
+<Video
+  controls
+  source="https://assets.imgix.video/videos/girl-reading-book-in-library.mp4"
+  onSeeked={(e) => console.log(e)}
+/>;
+```
+
+### Vue
+
+Vue has great support for Web Components, so you can use the component in your Vue application without any additional steps.
+
+```html
+<script setup>
+  import {IxVideo} from '@imgix/ix-video';
+  import {ref} from 'vue';
+</script>
+<script>
+  export default {
+    methods: {
+      warn(message, event) {
+        console.warn(message, event.detail);
+      },
+    },
+  };
+</script>
+
+<template>
+  <div class="App">
+    <ix-video
+      controls
+      source="https://assets.imgix.video/videos/girl-reading-book-in-library.mp4"
+      @error="(event) => warn('error:', event)"
+    ></ix-video>
+  </div>
+</template>
+```
+
+You will need to signal to the Vue compiler that this component is a custom element by adding the following:
+
+```js
+//vue.config.js
+module.exports = {
+  chainWebpack: config => {
+    config.module
+      .rule('vue')
+      .use('vue-loader')
+      .tap(options => ({
+        ...options,
+        compilerOptions: {
+          // treat any tag that starts with ix- as custom elements
+          isCustomElement: (name) => name.startsWith('ix-'),
+        }
+      })
+    )
+  }
+```
+
+Or if you're using Vite, you can add the following to your `vite.config.js`:
+
+```js
+//vite.config.js
+import vue from '@vitejs/plugin-vue';
+import {defineConfig} from 'vite';
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [
+    vue({
+      template: {
+        compilerOptions: {
+          isCustomElement: (name) => name.startsWith('ix-'),
+        },
+      },
+    }),
+  ],
+});
+```
+
 ## Attributes
 
 The component is designed to mimic the `<video>` tag [API](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attributes) as closely as possible. So most of the [attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/video#attributes) that are supported by the `<video>` tag are also supported by the `<ix-video>` tag.
