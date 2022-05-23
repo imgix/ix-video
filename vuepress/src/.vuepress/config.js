@@ -43,7 +43,7 @@ module.exports = {
       },
       {
         text: 'Stream Videos',
-        link: '/overview/ix-video/',
+        link: '/overview/basic-usage/',
       },
       {
         text: 'imgix',
@@ -55,7 +55,14 @@ module.exports = {
         {
           title: 'Overview',
           collapsable: false,
-          children: ['', 'installation', 'ix-video'],
+          children: [
+            '',
+            'installation',
+            'basic-usage',
+            'customization',
+            'advanced-usage',
+            'attributes',
+          ],
           sidebarDepth: 2,
         },
       ],
