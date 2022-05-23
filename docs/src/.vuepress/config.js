@@ -1,6 +1,7 @@
 const {description} = require('../../package');
 
 module.exports = {
+  base: '/ix-video/',
   markdown: {
     lineNumbers: true,
   },
