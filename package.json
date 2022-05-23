@@ -33,6 +33,7 @@
     "build:watch": "rollup -c rollup.config.mjs --watch",
     "dev": "vite --config ./dev/vite.config.ts",
     "dev:prod": "vite --mode production --config ./dev/vite.config.ts",
+    "docs:dev": "cd vuepress && npm run dev",
     "lint": "npm run lint:lit-analyzer && npm run lint:eslint",
     "lint:eslint": "eslint 'src/**/*.ts'",
     "lint:lit-analyzer": "lit-analyzer",
