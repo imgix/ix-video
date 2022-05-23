@@ -1,5 +1,15 @@
 # 🔌 Installation
 
+## Requirements
+
+- Node v12+
+
+- Browsers with Custom Elements V1 and Shadow DOM support, e.g. Chrome, Firefox, Safari, Edge (79+)
+
+Browsers without native [custom element support](https://caniuse.com/#feat=custom-elementsv1) require a [polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements).
+
+For Node/browser versions without [es6 module support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#browser_support), you'll need to use a bundler like [webpack](https://webpack.js.org/) or [parcel](https://parceljs.org/) to bundle the custom element.
+
 ## Local
 
 To install the library inside your project, run the following command:
@@ -16,7 +26,7 @@ We recommend that you import the library in your application's main file so that
 import {IxVideo} from '@imgix/ix-video';
 ```
 
-For more information, see the [usage guide](/overview/ix-video.html#basic-usage).
+Look at our [usage guide](/overview/ix-video.html#basic-usage) to for examples on how to us this inside your React, Vue, or other web-apps.
 
 ## Without build tools
 
