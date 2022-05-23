@@ -1,4 +1,4 @@
-## Customization
+# Customization
 
 The `ix-video` player uses [video-js](https://videojs.com/getting-started) and its default [skin](https://videojs.com/getting-started/#skinning) to style the player. Therefore, you can can target any of the video-js components and customize their appearance.
 
