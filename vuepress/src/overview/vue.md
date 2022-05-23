@@ -1,15 +1,5 @@
 # Using `≤ix-video>` custom element in a Vue app
 
-## Installation
-
-First ensure you've installed the package in your project:
-
-```bash
-npm i @imgix/ix-video
-```
-
-## Usage
-
 Vue has great support for Web Components, so you can use the component in your Vue application without any additional steps.
 
 ```html

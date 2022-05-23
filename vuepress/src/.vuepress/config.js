@@ -35,7 +35,7 @@ module.exports = {
     docsDir: '',
     editLinkText: '',
     lastUpdated: false,
-    displayAllHeaders: false,
+    displayAllHeaders: true,
     nav: [
       {
         text: 'Overview',
@@ -58,7 +58,16 @@ module.exports = {
           children: [
             '',
             'installation',
-            'basic-usage',
+            {
+              title: 'Usage',
+              collapsable: false,
+              children: [
+                'basic-usage',
+                ['react', 'React'],
+                ['vue', 'Vue'],
+                ['static', 'Static HTML Page'],
+              ],
+            },
             'customization',
             'advanced-usage',
             'attributes',
