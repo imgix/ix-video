@@ -1,22 +1,18 @@
 # 📙 Introduction
 
-**@imgix/ix-video**
-
-An imgix video [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that makes it **quick** and **easy** to use our powerful video processing and delivery platform inside your web application.
+`<ix-video>` is an imgix video [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that works anywhere. It makes it quick and easy to use our powerful **video processing and delivery** API inside your web application.
 
 ## Quick Start Guides
 
-To get started, [install](/overview/installation) the library and pick one of the following guides.
+[🔌 Install](/overview/installation) the library
 
-### [ix-video](/overview/ix-video)
+[📹 Stream](/overview/basic-usage) HLS videos
 
-Render an imgix video in your web application.
+[🎨 Style](/overview/customization) the video player
 
-[📹 Stream HLS videos](/overview/ix-video.html#basic-usage)
+[📐 Resize](/overview/advanced-usage) the player automatically
 
-[🎨 Style the video player](/overview/ix-video.html#customization)
-
-[📐 Automatically resize videos](/overview/ix-video.html#advanced-usage)
+[📝 Customize](/overview/advanced-usage.html#player-configuration) the player
 
 ::: details more guides coming soon
 
