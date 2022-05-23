@@ -1,6 +1,6 @@
 ---
 home: true
-heroImage: https://pluginicons.craft-cdn.com/imgix.svg?1511197213
+heroImage: https://assets.imgix.net/case-study/joybird/imgix_badge_1_medium.png?mask=ellipse&w=200&h=200
 tagline: imgix video custom element
 actionText: Quick Start →
 actionLink: /overview/
