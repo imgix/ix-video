@@ -2,7 +2,7 @@
 /lib/
 /test/
 /dist/
-/vuepress/node_modules
+/docs/node_modules
 custom-elements.json
 # top level source
 pairing.md
