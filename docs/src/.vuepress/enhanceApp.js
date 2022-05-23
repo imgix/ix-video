@@ -6,7 +6,6 @@
 
 // import ix-video from '@imgix/ix-video';
 if (typeof window !== 'undefined') window.global = window;
-require('../../../dist/index.bundled.js');
 
 export default ({
   Vue, // the version of Vue being used in the VuePress app
@@ -15,4 +14,5 @@ export default ({
   siteData, // site metadata
 }) => {
   // ...apply enhancements for the site.
+  require('../../../dist/index.bundled.js');
 };
