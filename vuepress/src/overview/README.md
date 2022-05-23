@@ -1,4 +1,4 @@
-# 📙 Introduction
+# Introduction
 
 `<ix-video>` is an imgix video [custom element](https://developer.mozilla.org/en-US/docs/Web/Web_Components) that works anywhere. It makes it quick and easy to use our powerful **video processing and delivery** API inside your web application.
 
