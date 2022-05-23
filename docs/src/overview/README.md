@@ -4,13 +4,13 @@
 
 ## Quick Start Guides
 
-[🔌 Install](/overview/installation) the library
+[🔌 Install](/overview/installation.html) the library
 
-[📹 Stream](/overview/basic-usage) HLS videos
+[📹 Stream](/overview/basic-usage.html) HLS videos
 
-[🎨 Style](/overview/customization) the video player
+[🎨 Style](/overview/customization.html) the video player
 
-[📐 Resize](/overview/advanced-usage) the player automatically
+[📐 Resize](/overview/advanced-usage.html) the player automatically
 
 [📝 Customize](/overview/advanced-usage.html#player-configuration) the player
 
