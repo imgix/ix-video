@@ -34,7 +34,7 @@ Or add it from a CDN:
 
 # Usage
 
-Look at our docs to see how to us this inside your [React](/documentation/react.md), [Vue](/documentation/vue.md), or other [web-apps](/documentation/static.md).
+Look at our docs to see how to us this inside your [React](/vuepress/src/overview/react.md), [Vue](/vuepress/src/overview/vue.md), or other [web-apps](/vuepress/src/overview/static.md).
 
 ## Using `<ix-video>` on a static HTML static page
 
