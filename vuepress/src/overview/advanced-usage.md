@@ -1,6 +1,6 @@
-## Advanced Usage
+# Advanced Usage
 
-### Restricting the player's size
+## Restricting the player's size
 
 You can restrict the video player's dimensions to a specific size one of two ways:
 
@@ -16,7 +16,7 @@ The `fixed` attribute will force the player to be a fixed size. This is useful i
 
 <video-container></video-container>
 
-### Player configuration
+## Player configuration
 
 `ix-video` accepts most of the `data-setup`
 [options](https://videojs.com/guides/options) supported by video.js. This allows
