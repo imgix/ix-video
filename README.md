@@ -3,7 +3,7 @@
 An imgix video custom element that works anywhere.
 
 [![npm version](https://img.shields.io/npm/v/@imgix/ix-video.svg)](https://www.npmjs.com/package/@imgix/ix-video)
-[![circleci](https://circleci.com/gh/imgix/ix-video/tree/next.svg?style=shield&circle-token=ae497a4aade0e744c31dc29c97b967a8011ef8af)](https://circleci.com/gh/imgix/ix-video/)
+[![circleci](https://circleci.com/gh/imgix/ix-video/tree/main.svg?style=shield&circle-token=ae497a4aade0e744c31dc29c97b967a8011ef8af)](https://circleci.com/gh/imgix/ix-video/)
 
 # Requirements
 
