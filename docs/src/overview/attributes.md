@@ -164,6 +164,10 @@ type="video/mp4"
 
 The width of the video player. If `fixed` attribute is set, the player will not automatically resize to fit inside the container's dimensions.
 
+::: warning width should always be used along with `height` or `fixed`
+When `fixed` is not set, the player will always fill the available width of the container.
+:::
+
 ::: details click to see example
 
 ```html
