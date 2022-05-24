@@ -1,4 +1,5 @@
 {
+  "comment": "this package json is needed to side-step the mjs warnings from the root package.json",
   "name": "docs",
   "version": "0.0.1",
   "description": "imgix ix-video documentation",
@@ -13,7 +14,5 @@
     "build": "vuepress build src"
   },
   "license": "MIT",
-  "devDependencies": {
-    "vuepress": "^1.5.3"
-  }
+  "devDependencies": {}
 }
