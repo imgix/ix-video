@@ -17,7 +17,7 @@ Below is an example of how to import and use the `ix-video` custom element from 
     <h1>There is no bundler or bundling involved!</h1>
     <ix-video
       controls
-      src="https://assets.imgix.video/videos/girl-reading-book-in-library.mp4"
+      source="https://assets.imgix.video/videos/girl-reading-book-in-library.mp4"
     >
   </body>
 </html>
