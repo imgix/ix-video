@@ -35,7 +35,7 @@
     "dev:prod": "vite --mode production --config ./dev/vite.config.ts",
     "docs:dev": "cd docs && npm run dev",
     "docs:build": "cd docs && npm run build",
-    "docs:deploy": "cd docs && npx gh-pages -d src/.vuepress/dist",
+    "docs:deploy": "cd docs && npm run build && npx gh-pages -d src/.vuepress/dist",
     "lint": "npm run lint:lit-analyzer && npm run lint:eslint",
     "lint:eslint": "eslint 'src/**/*.ts'",
     "lint:lit-analyzer": "lit-analyzer",
