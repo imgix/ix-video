@@ -49,7 +49,7 @@ We highly recommend self-hosting the library if you are using it in a production
     <h1>There is no bundler or bundling involved!</h1>
     <ix-video
       controls
-      src="https://assets.imgix.video/videos/girl-reading-book-in-library.mp4"
+      source="https://assets.imgix.video/videos/girl-reading-book-in-library.mp4"
     >
   </body>
 </html>
