@@ -9,10 +9,10 @@
   "bugs": {
     "url": "https://github.com/imgix/ix-video/issues"
   },
-  "main": "/dist/index.bundled.js",
-  "module": "/dist/index.bundled.js",
-  "jsnext:main": "/dist/index.bundled.js",
-  "unpkg": "dist/index.bundled.js",
+  "main": "/dist/esm/ix-video.js",
+  "module": "/dist/esm/ix-video.js",
+  "jsnext:main": "/dist/esm/ix-video.js",
+  "unpkg": "dist/min/ix-video.js",
   "type": "module",
   "files": [
     "/dist",
@@ -29,8 +29,11 @@
     "videojs/": "./node_modules/video.js/dist/"
   },
   "scripts": {
-    "build": "rollup -c rollup.config.mjs",
-    "build:watch": "rollup -c rollup.config.mjs --watch",
+    "build": " npm run clean:esm && npm run clean:min && npm run build:esm && npm run build:min",
+    "build:esm": " npm run clean:esm && rollup -c rollup.config.mjs",
+    "build:esm:watch": " npm run clean:esm && rollup -c rollup.config.mjs --watch",
+    "build:min": "export VJS_BUNDLE_TYPE=minified || set VJS_BUNDLE_TYPE=minified&& npm run clean:min && rollup -c rollup.config.mjs",
+    "build:min:watch": "export VJS_BUNDLE_TYPE=minified || set VJS_BUNDLE_TYPE=minified&& npm run clean:min && rollup -c rollup.config.mjs --watch",
     "dev": "vite --config ./dev/vite.config.ts",
     "dev:prod": "vite --mode production --config ./dev/vite.config.ts",
     "docs:dev": "cd docs && npm run dev",
@@ -48,7 +51,8 @@
     "test:e2e": "concurrently --n \"vite,cypress\" --p \"[{name}]\" -c \"green,yellow\" \"npm:dev\" \"npm:cypress:run\" -k",
     "test:e2e:watch": "concurrently --n \"vite,cypress\" --p \"[{name}]\" -c \"green,yellow\" \"npm:dev\" \"npm run cypress:run:watch\" -k",
     "test:e2e:prod": "concurrently --n \"vite,cypress\" --p \"[{name}]\" -c \"green,yellow\" \"npm:dev\" \"npm run cypress:run:prod\" -k",
-    "checksize": "rollup -c ; cat index.bundled.js | gzip -9 | wc -c ; rm index.bundled.js",
+    "clean:min": "rm -rf dist/min",
+    "clean:esm": "rm -rf dist/esm",
     "cypress": "concurrently --n \"vite,cypress\" --p \"[{name}]\" -c \"green,yellow\" \"npm:cypress:open\" \"npm:dev\" -k",
     "cypress:open": "cypress open",
     "cypress:open-ct": "cypress open-ct",
@@ -107,6 +111,7 @@
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.28.2",
+    "rollup-plugin-html-literals": "^1.1.5",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-postcss-lit": "^2.0.0",
     "rollup-plugin-summary": "^1.2.3",
@@ -240,11 +245,11 @@
         {
           "assets": [
             {
-              "path": "dist/index.bundled.js",
+              "path": "dist/esm/ix-video.js",
               "label": "UMD/CJS build"
             },
             {
-              "path": "dist/index.bundled.ts.map",
+              "path": "dist/esm/ix-video.ts.map",
               "label": "UMD/CJS build sourcemap"
             },
             {
