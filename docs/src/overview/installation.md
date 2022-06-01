@@ -26,7 +26,7 @@ We recommend that you import the library in your application's main file so that
 import {IxVideo} from '@imgix/ix-video';
 ```
 
-Look at our [usage guide](/overview/basic-usage) to for examples on how to us this inside your React, Vue, or other web-apps.
+Look at our [usage guide](/ix-video/overview/basic-usage) to for examples on how to us this inside your React, Vue, or other web-apps.
 
 ## Without build tools
 
