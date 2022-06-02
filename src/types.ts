@@ -6,3 +6,5 @@ export interface DataSetup
   height?: number | string;
   fixed?: boolean;
 }
+
+export type VideoJsT = typeof import('video.js').default;
