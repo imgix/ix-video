@@ -1,10 +1,13 @@
 import {html, LitElement, PropertyValues} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
 import {createRef, ref} from 'lit/directives/ref.js';
-import videojs, {VideoJsPlayerOptions} from 'video.js';
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+import type {VideoJsPlayer, VideoJsPlayerOptions} from 'video.js';
+// eslint-disable-next-line
 // @ts-ignore - video-js.css is not typed
-import vjsStyles from 'video.js/dist/video-js.css';
+import vjsStyles from 'video.js/dist/video-js.min.css';
+// eslint-disable-next-line
+// @ts-ignore - the minified version of video.js is not typed
+import videojs from 'video.js/dist/video.min.js';
 import {DefaultVideoEventsMap} from '~/constants';
 import {convertDataSetupStringToObject} from '~/converters';
 import {
@@ -13,7 +16,7 @@ import {
   generateUid,
   spreadHostAttributesToElement,
 } from '~/helpers';
-import {DataSetup} from '~/types';
+import {DataSetup, VideoJsT} from '~/types';
 
 /**
  * ix-video is a custom element that can be used to display a video.
@@ -31,7 +34,7 @@ import {DataSetup} from '~/types';
 export class IxVideo extends LitElement {
   // Will insert a style tag to the document head. If we had the shadow-dom
   // enabled, this would mean the styles would be scoped to this component.
-  static override styles = vjsStyles;
+  static override styles = [vjsStyles];
   /**
    * ------------------------------------------------------------------------
    * Instance Variables
@@ -115,7 +118,7 @@ export class IxVideo extends LitElement {
    * video player when the element is removed from the DOM.
    */
   uid = generateUid();
-  vjsPlayer: videojs.Player | undefined = undefined;
+  vjsPlayer: VideoJsPlayer | undefined = undefined;
 
   /**
    * ------------------------------------------------------------------------
@@ -333,8 +336,8 @@ export class IxVideo extends LitElement {
 
     // Initialize the videojs player, which will modify the DOM to add the
     // video player and its controls.
-    const vjsPlayer = videojs(player, options as VideoJsPlayerOptions, () => {
-      console.log('ix-video: player ready');
+    const vjs = videojs as VideoJsT;
+    const vjsPlayer = vjs(player, options as VideoJsPlayerOptions, () => {
       // Prevent VJS error logging in console
       videojs.log.level('off');
       // Update the player poster to match the video element dimensions
@@ -349,8 +352,7 @@ export class IxVideo extends LitElement {
     super.disconnectedCallback();
 
     // Remove the VJS markup when the element is removed from the DOM.
-    const player = videojs.getPlayer(`ix-video-${this.uid}`);
-    player?.dispose();
+    this.vjsPlayer?.dispose();
 
     // Remove DefaultVideoEventsMap event listeners
     this._removeEventListeners();
