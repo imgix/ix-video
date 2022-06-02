@@ -1,11 +1,17 @@
-# imgix/ix-video
+<!-- ix-docs-ignore -->
 
-An imgix video custom element that works anywhere.
+![imgix logo](https://assets.imgix.net/sdk-imgix-logo.svg)
+
+`ix-video` is an imgix video custom element that works anywhere.
 
 [![npm version](https://img.shields.io/npm/v/@imgix/ix-video.svg)](https://www.npmjs.com/package/@imgix/ix-video)
 [![circleci](https://circleci.com/gh/imgix/ix-video/tree/main.svg?style=shield&circle-token=ae497a4aade0e744c31dc29c97b967a8011ef8af)](https://circleci.com/gh/imgix/ix-video/)
 
-# Requirements
+---
+
+<!-- /ix-docs-ignore -->
+
+## Requirements
 
 - Node v12+
 
@@ -15,7 +21,7 @@ Browsers without native [custom element support](https://caniuse.com/#feat=custo
 
 For Node/browser versions without [es6 module support](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules#browser_support), you'll need to use a bundler like [webpack](https://webpack.js.org/) or [parcel](https://parceljs.org/) to bundle the custom element.
 
-# Installation
+## Installation
 
 Install this package in your project:
 
@@ -32,11 +38,11 @@ Or add it from a CDN:
 ></script>
 ```
 
-# Usage
+## Usage
 
 Look at our docs to see how to us this inside your [React](/docs/src/overview/react.md), [Vue](/docs/src/overview/vue.md), or other [web-apps](/docs/src/overview/static.md).
 
-## Using `<ix-video>` on a static HTML static page
+### Using `<ix-video>` on a static HTML static page
 
 Below is an example of how to import and use the `ix-video` custom element from a direct import or CDN on a static HTML page.
 
