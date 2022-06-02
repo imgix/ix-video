@@ -7,7 +7,6 @@ import type {VideoJsPlayer, VideoJsPlayerOptions} from 'video.js';
 import vjsStyles from 'video.js/dist/video-js.min.css';
 // eslint-disable-next-line
 // @ts-ignore - the minified version of video.js is not typed
-import videojs from 'video.js/dist/video.min.js';
 import {DefaultVideoEventsMap} from '~/constants';
 import {convertDataSetupStringToObject} from '~/converters';
 import {
@@ -17,6 +16,13 @@ import {
   spreadHostAttributesToElement,
 } from '~/helpers';
 import {DataSetup, VideoJsT} from '~/types';
+// dynamically import to avoid blocking the main thread
+const videojs: Promise<VideoJsT> = (async () => {
+  // eslint-disable-next-line
+  // @ts-ignore - the minified version of video.js is not typed
+  const vjs = await import('video.js/dist/video.min.js');
+  return vjs.default;
+})();
 
 /**
  * ix-video is a custom element that can be used to display a video.
@@ -328,24 +334,25 @@ export class IxVideo extends LitElement {
   }
 
   override firstUpdated(): void {
-    const player = this.videoRef?.value as HTMLVideoElement;
+    const playerRef = this.videoRef?.value as HTMLVideoElement;
     const options = this._getOptions() as DataSetup;
 
-    this._spreadHostAttributesToPlayer(player);
+    this._spreadHostAttributesToPlayer(playerRef);
     this._bubbleUpEventListeners();
 
     // Initialize the videojs player, which will modify the DOM to add the
     // video player and its controls.
-    const vjs = videojs as VideoJsT;
-    const vjsPlayer = vjs(player, options as VideoJsPlayerOptions, () => {
-      // Prevent VJS error logging in console
-      videojs.log.level('off');
+    videojs.then((vjs) => {
+      const player = vjs(playerRef, options as VideoJsPlayerOptions, () => {
+        // Prevent VJS error logging in console
+        vjs.log.level('off');
+      });
       // Update the player poster to match the video element dimensions
       const poster = this._getPoster();
-      poster && vjsPlayer.poster(poster);
+      poster && player.poster(poster);
+      // store a reference to the videojs player in state
+      this.vjsPlayer = player;
     });
-    // store a reference to the videojs player in state
-    this.vjsPlayer = vjsPlayer;
   }
 
   override disconnectedCallback(): void {
