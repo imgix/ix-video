@@ -1,10 +1,10 @@
 import {createComponent} from '@lit-labs/react';
-import {IxVideo} from '../src/index';
+import {IxVideo} from './main';
 
-//eslint-disable-next-line
+/* eslint-disable @typescript-eslint/no-explicit-any */
 const React = (window as any).React as typeof import('react');
-//eslint-disable-next-line
 const ReactDOM = (window as any).ReactDOM as typeof import('react-dom');
+/* eslint-enable @typescript-eslint/no-explicit-any */
 export const Video = createComponent(React, 'ix-video', IxVideo, {
   onSeeked: 'seeked',
   onError: 'error',
