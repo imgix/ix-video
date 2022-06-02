@@ -9,10 +9,10 @@
   "bugs": {
     "url": "https://github.com/imgix/ix-video/issues"
   },
-  "main": "/dist/index.bundled.js",
-  "module": "/dist/index.bundled.js",
-  "jsnext:main": "/dist/index.bundled.js",
-  "unpkg": "dist/index.bundled.js",
+  "main": "/dist/esm/ix-video.js",
+  "module": "/dist/esm/ix-video.js",
+  "jsnext:main": "/dist/esm/ix-video.js",
+  "unpkg": "dist/min/ix-video.js",
   "type": "module",
   "files": [
     "/dist",
@@ -29,8 +29,13 @@
     "videojs/": "./node_modules/video.js/dist/"
   },
   "scripts": {
-    "build": "rollup -c rollup.config.mjs",
-    "build:watch": "rollup -c rollup.config.mjs --watch",
+    "build": "npm run build:esm && npm run build:min && npm run build:umd",
+    "build:esm": " npm run clean:esm && rollup -c rollup.config.mjs",
+    "build:esm:watch": " npm run clean:esm && rollup -c rollup.config.mjs --watch",
+    "build:min": "export VJS_BUNDLE_TYPE=minified || set VJS_BUNDLE_TYPE=minified&& npm run clean:min && rollup -c rollup.config.mjs",
+    "build:min:watch": "export VJS_BUNDLE_TYPE=minified || set VJS_BUNDLE_TYPE=minified&& npm run clean:min && rollup -c rollup.config.mjs --watch",
+    "build:umd": "export VJS_BUNDLE_TYPE=umd || set VJS_BUNDLE_TYPE=umd&& npm run clean:umd && rollup -c rollup.config.mjs",
+    "build:umd:watch": "export VJS_BUNDLE_TYPE=umd || set VJS_BUNDLE_TYPE=umd&& npm run clean:umd && rollup -c rollup.config.mjs --watch",
     "dev": "vite --config ./dev/vite.config.ts",
     "dev:prod": "vite --mode production --config ./dev/vite.config.ts",
     "docs:dev": "cd docs && npm run dev",
@@ -48,7 +53,14 @@
     "test:e2e": "concurrently --n \"vite,cypress\" --p \"[{name}]\" -c \"green,yellow\" \"npm:dev\" \"npm:cypress:run\" -k",
     "test:e2e:watch": "concurrently --n \"vite,cypress\" --p \"[{name}]\" -c \"green,yellow\" \"npm:dev\" \"npm run cypress:run:watch\" -k",
     "test:e2e:prod": "concurrently --n \"vite,cypress\" --p \"[{name}]\" -c \"green,yellow\" \"npm:dev\" \"npm run cypress:run:prod\" -k",
-    "checksize": "rollup -c ; cat index.bundled.js | gzip -9 | wc -c ; rm index.bundled.js",
+    "checksize": "npm run checksize:esm && npm run checksize:min && npm run checksize:umd",
+    "checksize:esm": "cd dist/esm/ && ls -S -lh | awk '{print $5, $9}'",
+    "checksize:min": "cd dist/min/ && ls -S -lh | awk '{print $5, $9}'",
+    "checksize:umd": "cd dist/umd/ && ls -S -lh | awk '{print $5, $9}'",
+    "clean:min": "rm -rf dist/min",
+    "clean:esm": "rm -rf dist/esm",
+    "clean:umd": "rm -rf dist/umd",
+    "clean:all": "rm -rf dist/min dist/esm dist/umd",
     "cypress": "concurrently --n \"vite,cypress\" --p \"[{name}]\" -c \"green,yellow\" \"npm:cypress:open\" \"npm:dev\" -k",
     "cypress:open": "cypress open",
     "cypress:open-ct": "cypress open-ct",
@@ -76,6 +88,11 @@
     "video.js": "^7.18.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/plugin-proposal-decorators": "^7.18.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.18.2",
+    "@babel/preset-env": "^7.18.2",
     "@custom-elements-manifest/analyzer": "^0.5.7",
     "@cypress/vite-dev-server": "^2.2.2",
     "@esm-bundle/chai": "^4.1.5",
@@ -83,6 +100,7 @@
     "@lit-labs/react": "^1.0.4",
     "@open-wc/testing": "^3.0.0-next.1",
     "@open-wc/testing-karma": "^4.0.9",
+    "@rollup/plugin-babel": "^5.3.1",
     "@rollup/plugin-commonjs": "^21.0.2",
     "@rollup/plugin-node-resolve": "^13.0.4",
     "@rollup/plugin-replace": "^3.0.0",
@@ -107,6 +125,7 @@
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.28.2",
+    "rollup-plugin-html-literals": "^1.1.5",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-postcss-lit": "^2.0.0",
     "rollup-plugin-summary": "^1.2.3",
@@ -240,11 +259,11 @@
         {
           "assets": [
             {
-              "path": "dist/index.bundled.js",
+              "path": "dist/esm/ix-video.js",
               "label": "UMD/CJS build"
             },
             {
-              "path": "dist/index.bundled.ts.map",
+              "path": "dist/esm/ix-video.ts.map",
               "label": "UMD/CJS build sourcemap"
             },
             {
