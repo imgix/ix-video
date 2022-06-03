@@ -40,7 +40,9 @@ Or add it from a CDN:
 
 ## Usage
 
-Look at our docs to see how to us this inside your [React](https://github.com/imgix/ix-video/blob/main/docs/src/overview/react.md), [Vue](https://github.com/imgix/ix-video/blob/main/docs/src/overview/vue.md), or other [web-apps](https://github.com/imgix/ix-video/blob/main/docs/src/overview/static.md).
+For advanced usage instructions, customizations, and more, please see this project's complete [documentation](https://imgix.github.io/ix-video/) site.
+
+These docs also host examples of how to use this component inside your [React](https://github.com/imgix/ix-video/blob/main/docs/src/overview/react.md), [Vue](https://github.com/imgix/ix-video/blob/main/docs/src/overview/vue.md), or [other](https://github.com/imgix/ix-video/blob/main/docs/src/overview/static.md) web apps.
 
 ### Using `<ix-video>` on a static HTML static page
 
