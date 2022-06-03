@@ -40,7 +40,7 @@ Or add it from a CDN:
 
 ## Usage
 
-Look at our docs to see how to us this inside your [React](/docs/src/overview/react.md), [Vue](/docs/src/overview/vue.md), or other [web-apps](/docs/src/overview/static.md).
+Look at our docs to see how to us this inside your [React](https://github.com/imgix/ix-video/blob/main/docs/src/overview/react.md), [Vue](https://github.com/imgix/ix-video/blob/main/docs/src/overview/vue.md), or other [web-apps](https://github.com/imgix/ix-video/blob/main/docs/src/overview/static.md).
 
 ### Using `<ix-video>` on a static HTML static page
 
