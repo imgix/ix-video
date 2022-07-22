@@ -2,6 +2,8 @@ import {html, LitElement, PropertyValues} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
 import {createRef, ref} from 'lit/directives/ref.js';
 import videojs, {VideoJsPlayerOptions} from 'video.js';
+// @ts-ignore - video-js.css is not typed
+window.videojs = videojs;
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore - video-js.css is not typed
 import vjsStyles from 'video.js/dist/video-js.css';

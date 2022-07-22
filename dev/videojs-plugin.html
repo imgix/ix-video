@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/videojs-seek-buttons/dist/videojs-seek-buttons.css">
+  </head>
+
+  <body>
+    <!-- HLS video that fills container -->
+    <div style="display: flex; width: 480px; height: 255px">
+      <ix-video class="my-custom-class" data-test-id="ix-video-with-container"
+        source="https://assets.imgix.video/videos/girl-reading-book-in-library.mp4" controls></ix-video>
+    </div>
+    <script type="module">
+      await import('./main.ts');
+      await import('https://cdn.jsdelivr.net/npm/videojs-seek-buttons/dist/videojs-seek-buttons.js');
+      const videoElement = document.querySelector('video');
+      console.log({ videoElement })
+      const videojsPlayer = videojs(videoElement);
+      console.log({ videojsPlayer })
+      videojsPlayer.seekButtons({
+        forward: 5,
+        back: 5,
+      });
+    </script>
+  </body>
+
+</html>
