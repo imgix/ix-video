@@ -1,19 +1,19 @@
-import {html, LitElement, PropertyValues} from 'lit';
-import {customElement, property, state} from 'lit/decorators.js';
-import {createRef, ref} from 'lit/directives/ref.js';
-import videojs, {VideoJsPlayerOptions} from 'video.js';
+import { html, LitElement, PropertyValues } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { createRef, ref } from 'lit/directives/ref.js';
+import videojs, { VideoJsPlayerOptions } from 'video.js';
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore - video-js.css is not typed
 import vjsStyles from 'video.js/dist/video-js.css';
-import {DefaultVideoEventsMap} from '~/constants';
-import {convertDataSetupStringToObject} from '~/converters';
+import { DefaultVideoEventsMap } from '~/constants';
+import { convertDataSetupStringToObject } from '~/converters';
 import {
   buildAttributeMap,
   createEventDetails,
   generateUid,
   spreadHostAttributesToElement,
 } from '~/helpers';
-import {DataSetup} from '~/types';
+import { DataSetup } from '~/types';
 
 /**
  * ix-video is a custom element that can be used to display a video.
@@ -54,31 +54,76 @@ export class IxVideo extends LitElement {
    * Show/hide the video controls
    * @default true
    */
-  @property({type: Boolean, attribute: 'controls', reflect: true})
+  @property({
+    type: Boolean, attribute: 'controls', reflect: true, hasChanged(value, oldValue) {
+      console.log('@property:controls', {
+        oldValue,
+        value,
+        hasChanged: value !== oldValue,
+      });
+      return value !== oldValue;
+    },
+  })
   controls = false;
 
   /**
    * Video player height
    */
-  @property({reflect: true, attribute: 'height'})
+  @property({
+    reflect: true, attribute: 'height', hasChanged(value, oldValue) {
+      console.log('@property:heigh', {
+        oldValue,
+        value,
+        hasChanged: value !== oldValue,
+      });
+      return value !== oldValue;
+    },
+  })
   height: string | undefined = undefined;
 
   /**
    * The source of the video
    */
-  @property({reflect: true})
+  @property({
+    reflect: true, hasChanged(value, oldValue) {
+      console.log('@property:source', {
+        oldValue,
+        value,
+        hasChanged: value !== oldValue,
+      });
+      return value !== oldValue;
+    },
+  })
   source: string | undefined = undefined;
 
   /**
    * MIME type of the video
    */
-  @property({reflect: true})
+  @property({
+    reflect: true, hasChanged(value, oldValue) {
+      console.log('@property:type', {
+        oldValue,
+        value,
+        hasChanged: value !== oldValue,
+      });
+      return value !== oldValue;
+    },
+  })
   type = 'application/x-mpegURL';
 
   /**
    * Video player width
    */
-  @property({reflect: true})
+  @property({
+    reflect: true, hasChanged(value, oldValue) {
+      console.log('@property:width', {
+        oldValue,
+        value,
+        hasChanged: value !== oldValue,
+      });
+      return value !== oldValue;
+    },
+  })
   width: string | undefined = undefined;
 
   /**
@@ -92,13 +137,39 @@ export class IxVideo extends LitElement {
     attribute: 'data-setup',
     converter: (value: string | null) =>
       convertDataSetupStringToObject(value ?? ''),
+    hasChanged(value, oldValue) {
+      console.log('@property:dataSetup', {
+        oldValue,
+        value,
+        hasChanged: value !== oldValue,
+      });
+      return value !== oldValue;
+    },
   })
   dataSetup = {};
 
-  @property({type: Boolean})
+  @property({
+    type: Boolean, hasChanged(value, oldValue) {
+      console.log('@property:fixed', {
+        oldValue,
+        value,
+        hasChanged: value !== oldValue,
+      });
+      return value !== oldValue;
+    },
+  })
   fixed = false;
 
-  @property({type: String})
+  @property({
+    type: String, hasChanged(value, oldValue) {
+      console.log('@property:poster', {
+        oldValue,
+        value,
+        hasChanged: value !== oldValue,
+      });
+      return value !== oldValue;
+    },
+  })
   poster: string | undefined = undefined;
 
   /**
@@ -133,6 +204,8 @@ export class IxVideo extends LitElement {
    * @returns void;
    */
   _spreadHostAttributesToPlayer(player: HTMLVideoElement) {
+    console.log('_spreadHostAttributesToPlayer', arguments);
+
     const attributeMap = buildAttributeMap(this);
     const excludeList = [
       'controls',
@@ -154,6 +227,11 @@ export class IxVideo extends LitElement {
     listener: EventListenerOrEventListenerObject,
     options?: boolean | EventListenerOptions
   ) => {
+    console.log('_addEventListener', {
+      type,
+      listener,
+      options
+    });
     this.videoRef?.value?.addEventListener(type, listener, options);
   };
 
@@ -162,6 +240,11 @@ export class IxVideo extends LitElement {
     listener: EventListenerOrEventListenerObject,
     options?: boolean | EventListenerOptions
   ) => {
+    console.log('_removeEventListener', {
+      type,
+      listener,
+      options
+    });
     this.videoRef?.value?.removeEventListener(type, listener, options);
   };
 
@@ -174,6 +257,7 @@ export class IxVideo extends LitElement {
    * @memberof IxVideo
    */
   private _bubbleUpEventListeners = () => {
+    console.log('_bubbleUpEventListeners');
     Object.keys(DefaultVideoEventsMap).forEach((_type) => {
       const type = _type as keyof typeof DefaultVideoEventsMap;
       this._addEventListener(type, (event: Event) => {
@@ -195,6 +279,7 @@ export class IxVideo extends LitElement {
    * @memberof IxVideo
    */
   private _removeEventListeners = () => {
+    console.log('_removeEventListeners');
     // Remove DefaultVideoEventsMap event listeners
     Object.keys(DefaultVideoEventsMap).forEach((_type) => {
       const type = _type as keyof typeof DefaultVideoEventsMap;
@@ -222,11 +307,12 @@ export class IxVideo extends LitElement {
    * @memberof IxVideo
    */
   private _getOptions = () => {
+    console.log('_getOptions');
     return {
       width: this.width ?? '',
       height: this.height ?? '',
       controls: this.controls,
-      sources: this.source ? [{src: this.source, type: this.type}] : [],
+      sources: this.source ? [{ src: this.source, type: this.type }] : [],
       fluid: !this.fixed,
       ...this.dataSetup,
     };
@@ -238,6 +324,7 @@ export class IxVideo extends LitElement {
    * @returns {void} void;
    */
   private _setStyles = (styles: CSSStyleDeclaration) => {
+    console.log('_setStyles');
     for (const key in styles) {
       if (styles.hasOwnProperty(key)) {
         const value = styles[key];
@@ -247,6 +334,7 @@ export class IxVideo extends LitElement {
   };
 
   private _getPoster = () => {
+    console.log('_getPoster');
     const width = this.width || this.videoRef.value?.offsetWidth || '';
     const height = this.height || this.videoRef.value?.offsetHeight || '';
     if (this.poster?.includes('://')) {
@@ -261,51 +349,75 @@ export class IxVideo extends LitElement {
    * ------------------------------------------------------------------------
    */
   override render() {
+    console.log('render');
     return html`
       <style>
         .vjs-poster {
           background-size: cover;
         }
-      </style>
-      <video
-        ${ref(this.videoRef)}
-        class="video-js vjs-default-skin vjs-big-play-centered ${this
-          .className}"
+        </style>
+      <video-js
+      ${ref(this.videoRef)}
+      class="video-js vjs-default-skin vjs-big-play-centered ${this
+        .className}"
         id="ix-video-${this.uid}"
         part="video"
-      ></video>
-    `;
+        ></video-js>
+        `;
+  }
+
+
+  override shouldUpdate(_changedProperties: PropertyValues<any>): boolean {
+    console.log('shouldUpdate', _changedProperties);
+
+    let shouldUpdate = false;
+
+
+    return true;
   }
 
   override updated(changed: PropertyValues<this>) {
+    console.log('updated', changed);
     super.updated(changed);
 
-    const {controls, height, width, fluid} = this._getOptions();
+    const { controls, height, width, fluid } = this._getOptions();
     let stylesChanged = false;
 
     // For each changed property, update the the vjsPlayer attribute value
     changed.forEach((_, propName) => {
-      if (propName === 'source') {
+      if (propName === 'source' &&
+        this.vjsPlayer?.src() !== this.source
+      ) {
         this.vjsPlayer?.src(
-          this.source ? [{src: this.source, type: this.type}] : []
+          this.source ? [{ src: this.source, type: this.type }] : []
         );
       }
-      if (propName === 'controls') {
+      if (propName === 'controls' &&
+        this.vjsPlayer?.controls() !== this.controls
+      ) {
         this.vjsPlayer?.controls(!!controls);
       }
-      if (propName === 'height' && height) {
+      if (propName === 'height' &&
+        this.vjsPlayer?.height() !== this.height
+      ) {
         this.vjsPlayer?.height(Number(height));
         stylesChanged = true;
       }
-      if (propName === 'width' && width) {
+      if (propName === 'width' &&
+        this.vjsPlayer?.width() !== this.width
+      ) {
         this.vjsPlayer?.width(Number(width));
         stylesChanged = true;
       }
-      if (propName === 'fixed') {
+      if (propName === 'fixed' &&
+        this.vjsPlayer?.fluid() !== !this.fixed /** WEIRD! */
+      ) {
         this.vjsPlayer?.fluid(!!fluid);
         stylesChanged = true;
       }
-      if (propName === 'poster') {
+      if (propName === 'poster' &&
+        this.vjsPlayer?.poster() !== this._getPoster()
+      ) {
         // Update the player poster to match the video element dimensions
         const poster = this._getPoster();
         poster && this.vjsPlayer?.poster(poster);
@@ -325,6 +437,7 @@ export class IxVideo extends LitElement {
   }
 
   override firstUpdated(): void {
+    console.log('firstUpdated');
     const player = this.videoRef?.value as HTMLVideoElement;
     const options = this._getOptions() as DataSetup;
 
@@ -339,13 +452,23 @@ export class IxVideo extends LitElement {
       videojs.log.level('off');
       // Update the player poster to match the video element dimensions
       const poster = this._getPoster();
+      console.log('firstUpdated::vjsPlayer', vjsPlayer);
+
       poster && vjsPlayer.poster(poster);
     });
     // store a reference to the videojs player in state
     this.vjsPlayer = vjsPlayer;
   }
 
+  override connectedCallback(): void {
+    console.log('connectedCallback');
+
+    super.connectedCallback();
+  }
+
   override disconnectedCallback(): void {
+    console.log('disconnectedCallback');
+
     super.disconnectedCallback();
 
     // Remove the VJS markup when the element is removed from the DOM.
@@ -357,6 +480,8 @@ export class IxVideo extends LitElement {
   }
 
   protected override createRenderRoot() {
+    console.log('createRenderRoot');
+
     /**
      * Remove the shadow root and renders the elements as children of the host.
      *
