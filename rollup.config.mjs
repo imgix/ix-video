@@ -102,7 +102,7 @@ const buildConfig = {
     ],
   },
   umd: {
-    // minified umd bundle
+    // umd bundle
     input: './src/elements/ix-video.ts',
     output: {
       dir: './dist/umd/',
@@ -127,6 +127,42 @@ const buildConfig = {
       resolve(),
       postcss(),
       postcssLit(),
+      commonjs(),
+      babel(babelConfig),
+      summary(),
+    ],
+  },
+  umd_min: {
+    // minified umd bundle
+    input: './src/elements/ix-video.ts',
+    output: {
+      format: 'umd',
+      file: './dist/umd/ix-video.min.js',
+      name: 'ix-video.js',
+      sourcemap: true,
+      // disable code splitting
+      manualChunks: () => 'ix-video.min.js',
+    },
+    onwarn(warning) {
+      if (warning.code !== 'THIS_IS_UNDEFINED') {
+        console.error(`(!) ${warning.message}`);
+      }
+    },
+    plugins: [
+      replace({
+        'Reflect.decorate': 'undefined',
+        preventAssignment: true,
+      }),
+      ts(),
+      resolve(),
+      postcss(),
+      postcssLit(),
+      // Minify JS
+      terser({
+        ecma: 2020,
+        module: true,
+        warnings: true,
+      }),
       commonjs(),
       babel(babelConfig),
       summary(),
