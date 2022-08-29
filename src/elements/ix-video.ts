@@ -265,7 +265,11 @@ export class IxVideo extends LitElement {
     const width = this.width || this.videoRef.value?.offsetWidth || '';
     const height = this.height || this.videoRef.value?.offsetHeight || '';
     if (this.poster?.includes('://')) {
-      return `${this.poster}?w=${width}&h=${height}`;
+      return imgixClient._buildURL(
+        this.poster,
+        {w: width, h: height, ixlib: 'foobar-123'},
+        {includeLibraryParam: false}
+      );
     }
     return null;
   };
