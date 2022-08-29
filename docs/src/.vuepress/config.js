@@ -8,7 +8,7 @@ module.exports = {
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#title
    */
-  title: '@imgix/ix-video',
+  title: 'ix-video - SDK for the imgix Video API',
   /**
    * Ref：https://v1.vuepress.vuejs.org/config/#description
    */

@@ -2,7 +2,7 @@
   "comment": "this package json is needed to side-step the mjs warnings from the root package.json",
   "name": "docs",
   "version": "0.0.1",
-  "description": "imgix ix-video documentation",
+  "description": "An imgix video custom element that works anywhere including React, Vue, static HTML. Contribute to imgix/ix-video development by creating an account on GitHub.",
   "main": "index.js",
   "authors": {
     "name": "imgix",
