@@ -5,6 +5,7 @@ import type {VideoJsPlayer, VideoJsPlayerOptions} from 'video.js';
 // eslint-disable-next-line
 // @ts-ignore - video-js.css is not typed
 import vjsStyles from 'video.js/dist/video-js.min.css';
+import imgixClient from '@imgix/js-core';
 // eslint-disable-next-line
 // @ts-ignore - the minified version of video.js is not typed
 import videojs from 'video.js/dist/video.min.js';
@@ -17,7 +18,6 @@ import {
   spreadHostAttributesToElement,
 } from '~/helpers';
 import {DataSetup, VideoJsT} from '~/types';
-
 /**
  * ix-video is a custom element that can be used to display a video.
  * It wraps the video.js player in a LitElement.
@@ -69,7 +69,19 @@ export class IxVideo extends LitElement {
   /**
    * The source of the video
    */
-  @property({reflect: true})
+  @property({
+    reflect: true,
+    converter: (value: string | null) => {
+      if (!value) {
+        return value;
+      }
+      return imgixClient._buildURL(
+        value,
+        {ixlib: 'foobar-123'},
+        {includeLibraryParam: false}
+      );
+    },
+  })
   source: string | undefined = undefined;
 
   /**

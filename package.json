@@ -84,6 +84,7 @@
   ],
   "license": "BSD-3-Clause",
   "dependencies": {
+    "@imgix/js-core": "^3.6.0",
     "lit": "^2.1.0",
     "video.js": "^7.18.1"
   },
