@@ -1,7 +1,9 @@
+import imgixClient from '@imgix/js-core';
 import {html, LitElement, PropertyValues} from 'lit';
 import {customElement, property, state} from 'lit/decorators.js';
 import {createRef, ref} from 'lit/directives/ref.js';
 import type {VideoJsPlayer, VideoJsPlayerOptions} from 'video.js';
+import {IXLIB as ixlib} from '~/version';
 // eslint-disable-next-line
 // @ts-ignore - video-js.css is not typed
 import vjsStyles from 'video.js/dist/video-js.min.css';
@@ -17,7 +19,6 @@ import {
   spreadHostAttributesToElement,
 } from '~/helpers';
 import {DataSetup, VideoJsT} from '~/types';
-
 /**
  * ix-video is a custom element that can be used to display a video.
  * It wraps the video.js player in a LitElement.
@@ -229,7 +230,9 @@ export class IxVideo extends LitElement {
       width: this.width ?? '',
       height: this.height ?? '',
       controls: this.controls,
-      sources: this.source ? [{src: this.source, type: this.type}] : [],
+      sources: this.source
+        ? [{src: this._buildURL(this.source), type: this.type}]
+        : [],
       fluid: !this.fixed,
       ...this.dataSetup,
     };
@@ -247,6 +250,14 @@ export class IxVideo extends LitElement {
         this.style.setProperty(key, value);
       }
     }
+  };
+
+  private _buildURL = (source: string, params?: {}) => {
+    return imgixClient._buildURL(
+      source,
+      {...params, ixlib},
+      {includeLibraryParam: false}
+    );
   };
 
   private _getPoster = () => {
