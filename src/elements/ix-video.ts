@@ -264,7 +264,10 @@ export class IxVideo extends LitElement {
     const width = this.width || this.videoRef.value?.offsetWidth || '';
     const height = this.height || this.videoRef.value?.offsetHeight || '';
     if (this.poster?.includes('://')) {
-      return `${this.poster}?w=${width}&h=${height}`;
+      return this._buildURL(this.poster, {
+        w: width,
+        h: height,
+      });
     }
     return null;
   };
