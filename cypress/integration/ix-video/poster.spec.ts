@@ -1,5 +1,5 @@
+import {IXLIB} from '../../../src/version';
 import {PLAYER_WITH_CONTAINER} from '../../fixtures/selectors';
-
 context('ix-video: poster', () => {
   before(() => {
     cy.visit('/poster.html');
@@ -23,7 +23,7 @@ context('ix-video: poster', () => {
         cy.get('.vjs-poster').should(
           'have.css',
           'background-image',
-          `url("https://sdk-test.imgix.net/amsterdam.jpg?w=${videoTagWith}&h=${videoTagHeight}")`
+          `url("https://sdk-test.imgix.net/amsterdam.jpg?w=${videoTagWith}&h=${videoTagHeight}&ixlib=${IXLIB}")`
         );
       });
     });
@@ -36,7 +36,7 @@ context('ix-video: poster', () => {
         cy.get('.vjs-poster').should(
           'have.css',
           'background-image',
-          `url("https://sdk-test.imgix.net/amsterdam.jpg?w=${videoTagWith}&h=${videoTagHeight}")`
+          `url("https://sdk-test.imgix.net/amsterdam.jpg?w=${videoTagWith}&h=${videoTagHeight}&ixlib=${IXLIB}")`
         );
       });
     });
