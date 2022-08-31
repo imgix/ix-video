@@ -14,5 +14,5 @@ export default ({
   siteData, // site metadata
 }) => {
   // ...apply enhancements for the site.
-  require('../../../dist/index.bundled.js');
+  require('../../../dist/umd/ix-video.js');
 };
