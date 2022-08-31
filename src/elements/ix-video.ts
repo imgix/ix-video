@@ -304,7 +304,9 @@ export class IxVideo extends LitElement {
     changed.forEach((_, propName) => {
       if (propName === 'source') {
         this.vjsPlayer?.src(
-          this.source ? [{src: this.source, type: this.type}] : []
+          this.source
+            ? [{src: this._buildURL(this.source), type: this.type}]
+            : []
         );
       }
       if (propName === 'controls') {
