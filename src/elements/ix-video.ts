@@ -353,9 +353,6 @@ export class IxVideo extends LitElement {
     const vjsPlayer = vjs(player, options as VideoJsPlayerOptions, () => {
       // Prevent VJS error logging in console
       videojs.log.level('off');
-      // Update the player poster to match the video element dimensions
-      const poster = this._getPoster();
-      poster && vjsPlayer.poster(poster);
     });
     // store a reference to the videojs player in state
     this.vjsPlayer = vjsPlayer;
