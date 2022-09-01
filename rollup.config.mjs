@@ -14,6 +14,7 @@ import postcssLit from 'rollup-plugin-postcss-lit';
 import summary from 'rollup-plugin-summary';
 import {terser} from 'rollup-plugin-terser';
 import ts from 'rollup-plugin-ts';
+import cleanup from 'rollup-plugin-cleanup';
 
 const devMode = process.env.NODE_ENV === 'development';
 const vjsBundleType = process.env.VJS_BUNDLE_TYPE || 'esm';
@@ -50,6 +51,7 @@ const buildConfig = {
     output: {
       dir: './dist/min/',
       format: 'esm',
+      sourcemap: false,
     },
     onwarn(warning) {
       if (warning.code !== 'THIS_IS_UNDEFINED') {
@@ -81,6 +83,7 @@ const buildConfig = {
     output: {
       dir: './dist/esm/',
       format: 'esm',
+      sourcemap: false,
     },
     onwarn(warning) {
       if (warning.code !== 'THIS_IS_UNDEFINED') {
@@ -109,7 +112,7 @@ const buildConfig = {
       format: 'umd',
       name: 'ix-video.js',
       exports: 'named',
-      sourcemap: true,
+      sourcemap: false,
       // disable code splitting
       manualChunks: () => 'ix-video.js',
     },

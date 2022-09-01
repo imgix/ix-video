@@ -125,6 +125,7 @@
     "prettier": "^2.3.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.28.2",
+    "rollup-plugin-cleanup": "^3.2.1",
     "rollup-plugin-html-literals": "^1.1.5",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-postcss-lit": "^2.0.0",
