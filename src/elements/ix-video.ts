@@ -230,9 +230,6 @@ export class IxVideo extends LitElement {
       width: this.width ?? '',
       height: this.height ?? '',
       controls: this.controls,
-      sources: this.source
-        ? [{src: this._buildURL(this.source), type: this.type}]
-        : [],
       fluid: !this.fixed,
       ...this.dataSetup,
     };
@@ -345,7 +342,7 @@ export class IxVideo extends LitElement {
 
   override firstUpdated(): void {
     const player = this.videoRef?.value as HTMLVideoElement;
-    const options = this._getOptions() as DataSetup;
+    const options = {} as DataSetup;
 
     this._spreadHostAttributesToPlayer(player);
     this._bubbleUpEventListeners();
