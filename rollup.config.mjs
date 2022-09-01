@@ -102,6 +102,7 @@ const buildConfig = {
       postcssLit(),
       commonjs(),
       summary(),
+      cleanup(),
     ],
   },
   umd: {
