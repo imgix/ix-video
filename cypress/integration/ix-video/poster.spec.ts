@@ -34,8 +34,12 @@ context('ix-video: poster', () => {
     it('should not accept relative URLs', () => {
       cy.get(ixVideoTag).then(($ixVideo) => {
         const videoTag = $ixVideo.find('[part=video]');
-        const videoTagWith = videoTag.css('width').split('px')[0];
-        const videoTagHeight = videoTag.css('height').split('px')[0];
+        const videoTagWith = parseFloat(
+          videoTag.css('width').split('px')[0]
+        ).toFixed(0);
+        const videoTagHeight = parseFloat(
+          videoTag.css('height').split('px')[0]
+        ).toFixed(0);
         $ixVideo.attr('poster', '../../fixtures/amsterdam.jpg');
         cy.get('.vjs-poster').should(
           'have.css',
