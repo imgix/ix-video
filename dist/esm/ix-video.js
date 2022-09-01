@@ -1402,7 +1402,7 @@ const t={ATTRIBUTE:1,CHILD:2,PROPERTY:3,BOOLEAN_ATTRIBUTE:4,EVENT:5,ELEMENT:6},e
 
 // TODO: use this in the components to track requests by version
 // Do not change this file
-const VERSION = '1.2.0-rc.1';
+const VERSION = '1.2.0-rc.2';
 const IXLIB = 'video-' + VERSION;
 
 function styleInject(css, ref) {
@@ -68140,7 +68140,9 @@ let IxVideo = class IxVideo extends s {
         changed.forEach((_, propName) => {
             var _a, _b, _c, _d, _e, _f;
             if (propName === 'source') {
-                (_a = this.vjsPlayer) === null || _a === void 0 ? void 0 : _a.src(this.source ? [{ src: this.source, type: this.type }] : []);
+                (_a = this.vjsPlayer) === null || _a === void 0 ? void 0 : _a.src(this.source
+                    ? [{ src: this._buildURL(this.source), type: this.type }]
+                    : []);
             }
             if (propName === 'controls') {
                 (_b = this.vjsPlayer) === null || _b === void 0 ? void 0 : _b.controls(!!controls);
