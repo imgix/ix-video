@@ -1,6 +1,6 @@
 {
   "name": "@imgix/ix-video",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "imgix video custom element that works anywhere",
   "repository": {
     "type": "git",

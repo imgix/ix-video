@@ -4255,7 +4255,7 @@
 	}(d));
 
 	// Do not change this file
-	const VERSION = '1.1.0';
+	const VERSION = '1.2.0';
 	const IXLIB = 'video-' + VERSION;
 
 	function styleInject(css, ref) {
