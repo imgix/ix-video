@@ -19,3 +19,4 @@ docs/.nyc_output
 docs/.basement
 docs/config.local.js
 docs/basement_dist
+/docs/src/.vuepress/dist
