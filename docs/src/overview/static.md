@@ -11,7 +11,7 @@ Below is an example of how to import and use the `ix-video` custom element from 
       import {IxVideo} from './node_modules/@imgix/ix-video/dist/index.bundled.js';
     </script>
     <!-- Alternatively, the component can be loaded via a CDN -->
-    <script type="module" src="https://unpkg.com/@imgix/ix-video@latest/dist/index.bundled.js"></script>
+    <script type="module" src="https://static.imgix.net/ix-video/@latest-v1/umd/ix-video.min.js"></script>
   </head>
   <body>
     <h1>There is no bundler or bundling involved!</h1>

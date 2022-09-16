@@ -43,7 +43,7 @@ We highly recommend self-hosting the library if you are using it in a production
   <head>
     <title>ix-video in a static HTML file</title>
     <!-- Note: type 'module' here is important -->
-    <script type="module" src="https://unpkg.com/@imgix/ix-video@latest/dist/index.bundled.js"></script>
+    <script type="module" src="https://static.imgix.net/ix-video/@latest-v1/umd/ix-video.min.js"></script>
   </head>
   <body>
     <h1>There is no bundler or bundling involved!</h1>
