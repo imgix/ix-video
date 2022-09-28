@@ -64,11 +64,11 @@ project:
 
    ```bash
    # Clone your fork of the repo into the current directory
-   git clone git@github.com:<YOUR_USERNAME>/imgix.js.git
+   git clone git@github.com:<YOUR_USERNAME>/ix-video.git
    # Navigate to the newly cloned directory
-   cd imgix.js
+   cd ix-video
    # Assign the original repo to a remote called "upstream"
-   git remote add upstream https://github.com/imgix/imgix.js
+   git remote add upstream https://github.com/imgix/ix-video
    ```
 
 2. If you cloned a while ago, get the latest changes from upstream:
