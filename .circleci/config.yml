@@ -27,8 +27,7 @@ workflows:
     jobs:
       - cypress/run:
           start: npm run dev:prod
-      - build-test:
-          start: npm run build
+      - build-test
       - release:
           name: semantic-release 🚀
           requires:
