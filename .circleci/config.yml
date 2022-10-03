@@ -3,6 +3,16 @@ orbs:
   cypress: cypress-io/cypress@1
   node: circleci/node@5.0.0
 jobs:
+  build-test:
+    docker:
+      - image: cimg/node:current
+    steps:
+      - checkout
+      - node/install-packages:
+          pkg-manager: npm
+      - run:
+          name: "Test whether build is successful"
+          command: npm run build
   release:
     docker:
       - image: cimg/node:current
@@ -17,7 +27,10 @@ workflows:
     jobs:
       - cypress/run:
           start: npm run dev:prod
+      - build-test:
+          start: npm run build
       - release:
           name: semantic-release 🚀
           requires:
             - cypress/run
+            - build-test
