@@ -15,7 +15,7 @@ context('ix-video: poster', () => {
         expect(poster).to.equal('https://sdk-test.imgix.net/amsterdam.jpg');
       });
     });
-    it('should append width/height params to poster URL equal to video size', () => {
+    it.skip('should append width/height params to poster URL equal to video size', () => {
       cy.get(ixVideoTag).then(($ixVideo) => {
         const videoTag = $ixVideo.find('[part=video]');
         const videoTagWith = parseFloat(
@@ -31,7 +31,7 @@ context('ix-video: poster', () => {
         );
       });
     });
-    it('should not accept relative URLs', () => {
+    it.skip('should not accept relative URLs', () => {
       cy.get(ixVideoTag).then(($ixVideo) => {
         const videoTag = $ixVideo.find('[part=video]');
         const videoTagWith = parseFloat(
