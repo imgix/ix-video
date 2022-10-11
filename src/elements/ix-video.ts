@@ -19,6 +19,9 @@ import {
   spreadHostAttributesToElement,
 } from '~/helpers';
 import {DataSetup, VideoJsT} from '~/types';
+
+window.videojs = videojs;
+
 /**
  * ix-video is a custom element that can be used to display a video.
  * It wraps the video.js player in a LitElement.
