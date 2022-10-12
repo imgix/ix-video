@@ -52,7 +52,7 @@ video.js plugins support is experimental and could change at any time
 
 Register the plugin as you would any other `video.js` plugin.
 
-For example, to register the `videojs-seek-buttons` plugin, you import the module somewhere in your app where you have access to the `window` and get a reference to the `window.videojs` object. Then, register the plugin as is suggested in their documentation.
+For example, to register the `videojs-seek-buttons` plugin, import the module somewhere in your app where you have access to the `window` and get a reference to the `window.videojs` object. Then, register the plugin as is suggested in [their documentation](https://github.com/mister-ben/videojs-seek-buttons#usage).
 
 ```html
 <link
