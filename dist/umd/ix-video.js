@@ -4255,7 +4255,7 @@
 	}(d));
 
 	// Do not change this file
-	const VERSION = '1.2.0';
+	const VERSION = '1.2.1';
 	const IXLIB = 'video-' + VERSION;
 
 	function styleInject(css, ref) {
@@ -4469,6 +4469,7 @@
 	    }
 	};
 
+	window.videojs = videojs;
 	/**
 	 * ix-video is a custom element that can be used to display a video.
 	 * It wraps the video.js player in a LitElement.

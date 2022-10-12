@@ -1401,7 +1401,7 @@ const t={ATTRIBUTE:1,CHILD:2,PROPERTY:3,BOOLEAN_ATTRIBUTE:4,EVENT:5,ELEMENT:6},e
  */const e=()=>new o;class o{}const h=new WeakMap,n=e$2(class extends d{render(i){return w}update(i,[s]){var e;const o=s!==this.U;return o&&void 0!==this.U&&this.ot(void 0),(o||this.rt!==this.lt)&&(this.U=s,this.ht=null===(e=i.options)||void 0===e?void 0:e.host,this.ot(this.lt=i.element)),w}ot(t){"function"==typeof this.U?(void 0!==h.get(this.U)&&this.U.call(this.ht,void 0),h.set(this.U,t),void 0!==t&&this.U.call(this.ht,t)):this.U.value=t;}get rt(){var t;return "function"==typeof this.U?h.get(this.U):null===(t=this.U)||void 0===t?void 0:t.value}disconnected(){this.rt===this.lt&&this.ot(void 0);}reconnected(){this.ot(this.lt);}});
 
 // Do not change this file
-const VERSION = '1.2.0';
+const VERSION = '1.2.1';
 const IXLIB = 'video-' + VERSION;
 
 function styleInject(css, ref) {
@@ -67904,6 +67904,7 @@ const createEventDetails = (eventName, event, video) => {
     }
 };
 
+window.videojs = videojs;
 /**
  * ix-video is a custom element that can be used to display a video.
  * It wraps the video.js player in a LitElement.
