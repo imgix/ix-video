@@ -62,7 +62,7 @@ For example, to register the `videojs-seek-buttons` plugin, import the module so
 <!-- HLS video that fills container -->
 <div style="display: flex; width: 480px; height: 255px">
   <ix-video
-    class="video-with-skip-plugin"
+    id="video-with-skip-plugin"
     source="https://assets.imgix.video/videos/girl-reading-book-in-library.mp4"
     controls
   ></ix-video>
@@ -71,9 +71,7 @@ For example, to register the `videojs-seek-buttons` plugin, import the module so
   await import(
     'https://cdn.jsdelivr.net/npm/videojs-seek-buttons/dist/videojs-seek-buttons.js'
   );
-  const videoElement = document.querySelector(
-    '.video-with-skip-plugin > video'
-  );
+  const videoElement = document.getElementById('video-with-skip-plugin');
   const videojsPlayer = window.videojs(videoElement);
   videojsPlayer.seekButtons({
     forward: 5,
