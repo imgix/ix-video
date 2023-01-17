@@ -13,23 +13,9 @@ jobs:
       - run:
           name: "Test whether build is successful"
           command: npm run build
-  release:
-    docker:
-      - image: cimg/node:current
-    steps:
-      - checkout
-      - node/install-packages:
-          pkg-manager: npm
-      - run: npm run build
-      - run: npx semantic-release
 workflows:
   build:
     jobs:
       - cypress/run:
           start: npm run dev:prod
       - build-test
-      - release:
-          name: semantic-release 🚀
-          requires:
-            - cypress/run
-            - build-test
