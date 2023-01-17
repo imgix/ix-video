@@ -2,6 +2,13 @@
 
 ![imgix logo](https://assets.imgix.net/sdk-imgix-logo.svg)
 
+> ⚠️ Note
+> 
+> This package has moved to the [imgix/ix-elements/packages/ix-video](https://github.com/imgix/ix-elements/tree/main/packages) repository. For updates, issues, and bug reports please see [ix-elements](https://github.com/imgix/ix-elements/).
+>
+> The README and Documentation here reference `@imgix/ix-video` versions up to `1.x`.
+
+
 `ix-video` is an imgix video custom element that works anywhere.
 
 [![npm version](https://img.shields.io/npm/v/@imgix/ix-video.svg)](https://www.npmjs.com/package/@imgix/ix-video)
